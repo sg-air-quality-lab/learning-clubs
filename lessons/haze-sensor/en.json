@@ -1,0 +1,138 @@
+{
+  "format": 1,
+  "id": "haze-sensor",
+  "version": 1,
+  "language": "en",
+  "title": "Seeing the invisible: how a small box measures haze",
+  "summary": "Find out how a low-cost sensor detects particles you can't see, read real haze data from Singapore, and plan a sensor network for a community near the fires.",
+  "subjects": ["Physics", "Biology", "Geography", "Citizenship"],
+  "ages": "12–15",
+  "minutes": 90,
+  "groupSize": "3–4 people per phone or screen",
+  "goals": [
+    "Explain how a low-cost sensor detects particles using scattered light.",
+    "Compare the size of PM2.5 particles with things you know.",
+    "Read real haze data and describe patterns in it.",
+    "Explain why a cheap sensor can disagree with an official station, and what to do about it."
+  ],
+  "materials": [
+    "A phone with a torch",
+    "A spray bottle with water",
+    "A room you can darken (or a large cardboard box)",
+    "Paper and pens for the challenge"
+  ],
+  "authors": [{ "name": "Dominic Scherer", "role": "Teacher, German European School Singapore" }],
+  "license": "CC-BY-SA-4.0",
+  "sources": [
+    { "title": "NEA hourly PM2.5 readings, via data.gov.sg (Singapore Open Data Licence)", "url": "https://data.gov.sg" },
+    { "title": "Sensor.Community: open citizen-science network for air quality sensors", "url": "https://sensor.community" }
+  ],
+  "steps": [
+    {
+      "id": "hook",
+      "type": "read",
+      "title": "Look outside",
+      "body": "Smoke from burning peatland in Indonesia has drifted over Singapore. On bad days the sky turns grey-yellow and you can smell it.\n\nThe smoke is made of tiny particles. Each one is far too small to see on its own. Yet a small box on a balcony, costing about as much as a pizza dinner, can tell you how much of it is in the air. **How?**"
+    },
+    {
+      "id": "predict-how",
+      "type": "predict",
+      "title": "Your guess first",
+      "prompt": "How could a cheap sensor detect particles that are too small for your eyes?",
+      "options": [
+        { "id": "weigh", "text": "It weighs the air that flows through it" },
+        { "id": "light", "text": "It shines light through the air and watches for tiny flashes" },
+        { "id": "photo", "text": "It takes photos and counts the dots" },
+        { "id": "smell", "text": "It detects the smell of the smoke chemically" }
+      ],
+      "answer": "light",
+      "reveal": "A small fan pulls air through a dark chamber, and a laser shines across it. When a particle crosses the beam, it throws a little light sideways onto a detector: a tiny flash. **More particles, more flashes. Bigger particles, brighter flashes.** A chip turns the flashes into a number.\n\nWeighing is what the best official instruments do, by collecting particles on a filter. That is accurate, but slow and expensive."
+    },
+    {
+      "id": "estimate-size",
+      "type": "estimate",
+      "title": "How small is small?",
+      "prompt": "PM2.5 means particles up to 2.5 micrometres (µm) across. A human hair is about 70 µm thick. How many 2.5 µm particles would fit side by side across one hair?",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "particles",
+      "answer": 28,
+      "tolerance": 6,
+      "reveal": "70 ÷ 2.5 = **28**. Hair thickness varies a lot between people, so anything from about 10 to 70 is possible.\n\nParticles this small travel deep into your lungs, and the smallest ones can pass into your blood. That is why health advice is based on PM2.5, not on bigger dust."
+    },
+    {
+      "id": "sim-sensor",
+      "type": "sim",
+      "sim": "scattering",
+      "title": "Inside the sensor",
+      "body": "Air flows through the chamber. The laser crosses it from top to bottom. The detector looks at the beam from the side, so it only sees light that a particle throws sideways. The graph below shows what the detector sees.",
+      "tasks": [
+        "Move the haze from clean to very high. What happens to the flashes on the graph?",
+        "Watch closely: which particles make the brightest flashes?",
+        "Leave the haze where it is and turn the humidity up to 95%. The real amount of smoke has not changed. What happens to the sensor's reading, and why?"
+      ]
+    },
+    {
+      "id": "humidity",
+      "type": "read",
+      "title": "Why humid air fools cheap sensors",
+      "body": "Haze particles soak up water from humid air. They swell, scatter more light, and the sensor takes them for bigger particles than they really are, so it reads too high.\n\nSingapore's air is often above 80% humidity, so an uncorrected low-cost sensor here usually overestimates. Official instruments avoid this, for example by drying or heating the air before measuring. With cheap sensors, you can **calibrate**: put one next to an official station for a few weeks, and work out how its error depends on humidity.\n\n(The simulation uses a simplified model; real particles swell differently depending on what they are made of.)"
+    },
+    {
+      "id": "data-haze",
+      "type": "data",
+      "title": "Real data from a haze episode",
+      "body": "These are official hourly PM2.5 readings from two regions of Singapore during the haze in October 2026. Touch or hover over the chart to read values.",
+      "dataset": "nea-pm25-haze-2026-10",
+      "find": { "kind": "peak", "prompt": "Find the worst hour. When was it, and in which region? Decide as a group, then check." },
+      "questions": [
+        "Is the air usually worse at night or during the day? Can you think of a reason?",
+        "West and Central are only about 15 km apart. Why might their readings differ?",
+        "Which band, Normal, Elevated or High, did the air spend the most time in?"
+      ]
+    },
+    {
+      "id": "handson-beam",
+      "type": "handson",
+      "title": "Make the invisible visible",
+      "minutes": 10,
+      "materials": ["A phone with a torch", "A spray bottle with water", "A dark room or large box"],
+      "instructions": [
+        "Darken the room. Hold the phone so its torch shines across the room at about shoulder height, towards a wall.",
+        "Look at the space between the torch and the wall from the side. Can you see the beam in the air?",
+        "Spray a little water mist into the beam, and look from the side again.",
+        "Now stand behind the torch and look along the beam (not into the light). Is the beam easier or harder to see from here?"
+      ],
+      "safety": "Use a normal torch, never a laser pointer, and never shine light into anyone's eyes. Don't make smoke indoors.",
+      "observe": "Where can you see the beam, and why only there? How is this the same as what happens inside the sensor?"
+    },
+    {
+      "id": "discuss-who",
+      "type": "discuss",
+      "title": "Who is right?",
+      "prompt": "Your club's new sensor on the school roof shows 120 µg/m³. The official station nearby shows 60 at the same hour. The humidity is 92%. Is the sensor broken? Is it useless?",
+      "roles": [
+        { "name": "Skeptic", "task": "Argue that the sensor can't be trusted." },
+        { "name": "Defender", "task": "Find reasons the sensor is still valuable." },
+        { "name": "Scientist", "task": "Suggest a test that would show who is right." },
+        { "name": "Reporter", "task": "Write down the group's conclusion in one sentence." }
+      ]
+    },
+    {
+      "id": "challenge-riau",
+      "type": "challenge",
+      "title": "Sensors for a village near the fires",
+      "body": "Communities in Riau, Indonesia, live closest to the fires and breathe the worst smoke, often with no official station nearby. Design a low-cost sensor network for one village.",
+      "constraints": [
+        "Budget: five sensors at about €30 each",
+        "No reliable internet: how do readings get out?",
+        "Humidity is often above 85%",
+        "Power cuts happen",
+        "People must understand the readings without an app"
+      ],
+      "deliverable": "A one-page plan or poster: where the sensors go, how readings reach people, how you deal with humidity, and how you would check that the sensors are right.",
+      "connect": "Share your plan with a partner club, ideally one in Indonesia, and compare ideas. People who live near the fires know things no sensor can tell you."
+    }
+  ]
+}
